@@ -1,6 +1,7 @@
 import { NavigationBar } from "../components/navbar";
 import { MainSection } from "../components/mainsection";
 import { FooterSection } from "../components/footer";
+import { ProductProvider } from "../context/ProductProvider";
 
 export function Home () {
 
@@ -11,7 +12,10 @@ export function Home () {
         </div>
 
         <div className="pt-20"> {/* Adjust based on Navbar height */}
-            <MainSection />
+            <ProductProvider>
+                <MainSection />
+            </ProductProvider>
+            
             <FooterSection />
         </div>
 </>
