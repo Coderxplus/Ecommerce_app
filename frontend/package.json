@@ -12,12 +12,21 @@
     "format:check": "prettier . --check"
   },
   "dependencies": {
+<<<<<<< HEAD
     "flowbite-react": "^0.12.4",
     "react": "^19.1.1",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.8.2",
     "router": "^2.2.0"
+=======
+    "@headlessui/react": "^2.2.7",
+    "flowbite-react": "^0.12.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^7.8.2"
+>>>>>>> 2c6e6bd431c2e5b663113834629ad6025f00b371
   },
   "devDependencies": {
     "@eslint/js": "^9.31.0",
@@ -25,6 +34,10 @@
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react": "^4.7.0",
+<<<<<<< HEAD
+=======
+    "daisyui": "^5.0.54",
+>>>>>>> 2c6e6bd431c2e5b663113834629ad6025f00b371
     "eslint": "^9.31.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",

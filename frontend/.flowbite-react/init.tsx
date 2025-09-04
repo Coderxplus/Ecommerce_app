@@ -19,4 +19,8 @@ export function ThemeInit() {
   return <StoreInit {...CONFIG} />;
 }
 
+<<<<<<< HEAD
 ThemeInit.displayName = "ThemeInit";
+=======
+ThemeInit.displayName = "ThemeInit";
+>>>>>>> 2c6e6bd431c2e5b663113834629ad6025f00b371
