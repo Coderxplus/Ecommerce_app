@@ -11,6 +11,7 @@ import {
   TextInput,
   Button,
 } from "flowbite-react";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import Logo from "../assets/Logo.png";
 import { SideMenu } from "./sidenav";
@@ -63,7 +64,7 @@ export function NavigationBar() {
 
             <DropdownItem>
               <div className="flex items-center justify-between w-full">
-                <a href="/cart">Cart</a>
+                <Link to="/cart">Cart</Link>
                 <svg
                   className="w-6 h-6 text-gray-800 dark:text-white"
                   aria-hidden="true"
@@ -83,7 +84,7 @@ export function NavigationBar() {
             <DropdownItem>Settings</DropdownItem>
             <DropdownItem>Earnings</DropdownItem>
             <DropdownDivider />
-            <DropdownItem>Sign out</DropdownItem>
+            <DropdownItem><Link to="/login">Sign out</Link></DropdownItem>
           </Dropdown>
 
           <NavbarToggle />

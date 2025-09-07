@@ -12,7 +12,7 @@ A simple ecommerce application for hobby projects. This app allows users to brow
 
 ## Tech Stack
 
-- **Frontend:** React.js
+- **Frontend:** React.js, Flowbite
 - **Backend:** Django Rest Framework
 - **Database:** 
 
@@ -26,6 +26,7 @@ A simple ecommerce application for hobby projects. This app allows users to brow
     ```bash
     cd Ecommerce_app
     npm install
+    npm install flowbite-react
     ```
 3. Start the development server:
     ```bash
