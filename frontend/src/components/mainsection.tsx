@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { ProductCard } from "./productcard"
 import { ProductContext } from "../context/ProductContxt";
+import { CartProvider } from "../context/CartProvider";
 
 export function MainSection() {
   return (
@@ -29,8 +30,11 @@ export function ProductGrid() {
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {filteredProducts.length > 0 ? (
-        filteredProducts.map((product, index) => (
-          <ProductCard key={index} name={product.name} img={product.img} />
+        filteredProducts.map((product) => (
+          <CartProvider key={product.id}>
+            <ProductCard name={product.name} img={product.img} price={product.price} id={product.id}/>
+          </CartProvider>
+          
         ))
       ) : (
         <p className="col-span-full text-center text-gray-500">

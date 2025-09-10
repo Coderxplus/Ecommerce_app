@@ -4,6 +4,7 @@ import { Button, Card } from "flowbite-react";
 import { NavigationBar } from "../components/navbar";
 import { ProductContext } from "../context/ProductContxt";
 import { ProductProvider } from "../context/ProductProvider";
+import { CartContext } from "../context/CartContext";
 
 export function ProductPage() {
   
@@ -22,7 +23,8 @@ export function ProductPage() {
 export function Item() {
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
-  const { products } = useContext(ProductContext); // <-- destructure correctly
+  const { products } = useContext(ProductContext)
+  const { addToCart } = useContext(CartContext);
 
   const product = products.find((p) => p.id === parseInt(id));
 
@@ -31,9 +33,14 @@ export function Item() {
   }
 
   const handleAddToCart = () => {
-    console.log(`Added ${quantity} of ${product.name} to cart`);
+    addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      img: product.img,
+      quantity: quantity, 
+    });
   };
-
   return (
     <main className="flex-1 bg-gray-50 p-10">
       <div className="max-w-6xl mx-auto">
@@ -41,7 +48,7 @@ export function Item() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             {/* Product Image */}
             <img
-              src={product.img}  // <-- fixed property
+              src={product.img}
               alt={product.name}
               className="w-full rounded-2xl shadow-md"
             />

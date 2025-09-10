@@ -12,7 +12,7 @@ export function Register() {
                     </h2>
                 </div>
 
-                <form className="flex flex-col gap-4">
+                <form action="/login" className="flex flex-col gap-4">
                     {/* name */}
                     <div>
                         <div className="mb-2 block">

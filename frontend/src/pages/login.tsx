@@ -13,7 +13,7 @@ export function Login() {
                     <div className="mb-4 text-center">
                         <h2 className="text-2xl font-bold text-gray-700 dark:text-gray-300">Login</h2>
                     </div>
-                    <form className="flex flex-col gap-4">
+                    <form  action="/home" className="flex flex-col gap-4">
                     <div>
                         <div className="mb-2 block">
                         <Label

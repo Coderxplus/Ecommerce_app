@@ -12,7 +12,7 @@ A simple ecommerce application for hobby projects. This app allows users to brow
 
 ## Tech Stack
 
-- **Frontend:** React.js, Flowbite
+- **Frontend:** React.js, Flowbite, axios, tailwind
 - **Backend:** Django Rest Framework
 - **Database:** 
 
@@ -27,6 +27,7 @@ A simple ecommerce application for hobby projects. This app allows users to brow
     cd Ecommerce_app
     npm install
     npm install flowbite-react
+    npm install axios
     ```
 3. Start the development server:
     ```bash
