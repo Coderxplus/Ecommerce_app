@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
-import { ProductCard } from "./productcard"
-import { ProductContext } from "../context/ProductContxt";
+import { ProductCard } from "./productcard";
+import { ProductContext } from "../context/ProductContext";
 import { CartProvider } from "../context/CartProvider";
 
 export function MainSection() {
@@ -24,7 +24,7 @@ export function ProductGrid() {
 
   // Filter products dynamically
   const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+    product.name.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
   return (
@@ -32,9 +32,13 @@ export function ProductGrid() {
       {filteredProducts.length > 0 ? (
         filteredProducts.map((product) => (
           <CartProvider key={product.id}>
-            <ProductCard name={product.name} img={product.img} price={product.price} id={product.id}/>
+            <ProductCard
+              name={product.name}
+              img={product.img}
+              price={product.price}
+              id={product.id}
+            />
           </CartProvider>
-          
         ))
       ) : (
         <p className="col-span-full text-center text-gray-500">

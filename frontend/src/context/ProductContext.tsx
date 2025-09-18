@@ -4,8 +4,12 @@ import { createContext } from "react";
 export type Product = {
   id: number;
   name: string;
+  description:string;
   img: string;
   price: number;
+  stock: number;
+  created_at:string;
+  category:number;
 };
 
 // Define context type
