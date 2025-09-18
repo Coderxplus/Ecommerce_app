@@ -10,6 +10,7 @@ type ProductCardProps = {
 };
 
 export function ProductCard({ id, name, price, img }: ProductCardProps) {
+  console.log(img)
   const { addToCart } = useContext(CartContext); 
 
   const handleAddToCart = () => {

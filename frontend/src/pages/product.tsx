@@ -45,7 +45,7 @@ export function Item() {
           <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2">
             {/* Product Image */}
             <img
-              src={product.img}
+              src={product.image}
               alt={product.name}
               className="w-full rounded-2xl shadow-md"
             />

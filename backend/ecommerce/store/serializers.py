@@ -2,9 +2,11 @@ from rest_framework import serializers
 from .models import Cart, CartItem, Product, Category, Order, OrderItem 
 
 class ProductSerializer(serializers.ModelSerializer):
+    image = serializers.ImageField(use_url=True)
+
     class Meta:
         model = Product
-        fields = ['category', 'name', 'description', 'price', 'stock', 'image', 'created_at']
+        fields = "__all__"
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:

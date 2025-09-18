@@ -34,7 +34,7 @@ export function ProductGrid() {
           <CartProvider key={product.id}>
             <ProductCard
               name={product.name}
-              img={product.img}
+              img={product.image}
               price={product.price}
               id={product.id}
             />
