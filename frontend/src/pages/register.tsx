@@ -2,6 +2,7 @@ import { Button, Label, TextInput } from "flowbite-react";
 import PasswordInput from "../components/password_input";
 import { Link } from "react-router-dom";
 
+// TODO tomorrow remember to add context and an event handler that get all the dat from the page and sends it to the AUth context
 export function Register() {
     return (
         <div className="flex h-screen items-center justify-center bg-gray-100 dark:bg-gray-900">
