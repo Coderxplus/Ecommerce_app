@@ -39,9 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework_simplejwt',
     'corsheaders',
     'rest_framework',
-    'rest_framework_simplejwt',
     'store'
     
 ]
@@ -61,10 +61,12 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'ecommerce.urls'
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  
-    "http://localhost:5173",  
+    "http://localhost:5173",
 ]
-CORS_ALLOW_CREDENTIALS = True
+
+
+
+CORS_ALLOW_CREDENTIALS = False
 
 TEMPLATES = [
     {
@@ -81,12 +83,12 @@ TEMPLATES = [
     },
 ]
 
-
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     )
 }
+
 
 
 SIMPLE_JWT = {

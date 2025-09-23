@@ -4,16 +4,16 @@ from rest_framework.serializers import ModelSerializer, CharField
 User = get_user_model()
 
 class RegisterSerializer(ModelSerializer):
-    password = CharField(write_only=True)
+    password = CharField(write_only=True, min_length=5)
 
     class Meta:
         model = User
-        fields = ("id", "username", "email", "password")
+        fields = ("username", "email", "password")
 
     def create(self, validated_data):
         user = User.objects.create_user(
             username=validated_data["username"],
-            email=validated_data.get("email"),
+            email=validated_data["email"],
             password=validated_data["password"],
         )
         return user
