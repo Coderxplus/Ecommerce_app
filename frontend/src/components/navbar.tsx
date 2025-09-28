@@ -16,7 +16,7 @@ import { useState } from "react";
 import Logo from "../assets/Logo.png";
 import { SideMenu } from "./sidenav";
 
-export function NavigationBar() {
+export function NavigationBar(props) {
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = (event) => {
@@ -36,7 +36,7 @@ export function NavigationBar() {
           <NavbarBrand href="/home" className="flex items-center space-x-2 ml-4">
             <img src={Logo} className="h-6 sm:h-9" alt="Ecommerce Logo" />
             <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-              Ecommerce-app
+              ShopX
             </span>
           </NavbarBrand>
         </div>

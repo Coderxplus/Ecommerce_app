@@ -73,7 +73,7 @@ API.interceptors.response.use(
 
       return new Promise(function (resolve, reject) {
         axios
-          .post(`${API.defaults.baseURL}/api/auth/token/refresh/`, {
+          .post(`${API.defaults.baseURL}/auth/token/refresh/`, {
             refresh: refreshToken,
           })
           .then((res) => {

@@ -1,6 +1,7 @@
 import { Card, Button } from "flowbite-react";
 import { useContext } from "react";
-import { CartContext } from "../context/CartContext"; // 👈 import your CartContext
+import { CartContext } from "../context/CartContext"; 
+import { Navigate } from "react-router-dom";
 
 type ProductCardProps = {
   id: number;
@@ -21,6 +22,7 @@ export function ProductCard({ id, name, price, img }: ProductCardProps) {
       img,
       quantity: 1, 
     });
+    Navigate("/cart")
   };
 
   return (

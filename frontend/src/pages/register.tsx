@@ -1,41 +1,62 @@
 import { Button, Label, TextInput } from "flowbite-react";
 import PasswordInput from "../components/password_input";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { register } from "../axios/auth";
-
+import { Link,  useNavigate } from "react-router-dom";
+import { registerUser } from "../axios/auth";
+import { validateForm } from "../hooks/validateform";
 
 export function Register() {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
-    name: "",
+    username: "",
     email: "",
-    password2: "",
+    password: "",
   });
+  const [errors, setErrors] = useState<string[]>([]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // stop page reload
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-    // get form data by id
     const form = e.currentTarget;
     const name = (form.querySelector("#name") as HTMLInputElement).value;
     const email = (form.querySelector("#email1") as HTMLInputElement).value;
     const password1 = (form.querySelector("#password1") as HTMLInputElement).value;
     const password2 = (form.querySelector("#password2") as HTMLInputElement).value;
 
-    if (password1 == password2 ){
-        const data = { name, email ,password2 };
-        setFormData(data);
-        console.log("Form data:", data);
-        register(formData)
+   
+    const validationErrors = validateForm(
+      { username: name, email, password1, password2 },
+      { username: true, email: true, password: { minLength: 6 }, confirmPassword: true }
+    );
+
+    if (validationErrors.length > 0) {
+      setErrors(validationErrors);
+      return;
     }
-    
 
-    
+    const data = { username: name, email: email, password: password1 };
+    setFormData(data);
 
-    // here you can call API
-    // axios.post("/register", data)
+    try {
+      const res = await registerUser(data);
+      console.log("✅ Registered:", res);
+      alert("sucessfull ✅")
+      navigate("/login");
+    } catch (err: any) {
+      console.error("❌ Registration failed:", err);
+
+      if (err.response?.data) {
+        // Backend returned validation errors
+        const apiErrors = Object.values(err.response.data).flat();
+        setErrors(apiErrors as string[]);
+      } else {
+        // Generic fallback
+        setErrors(["Something went wrong. Please try again later."]);
+      }
+    }
   };
 
+  
   return (
     <div className="flex h-screen items-center justify-center bg-gray-100 dark:bg-gray-900">
       <div className="login-form w-[400px] max-w-lg rounded-lg bg-white p-8 shadow-md dark:bg-gray-800">
@@ -45,51 +66,45 @@ export function Register() {
           </h2>
         </div>
 
-        {/* attach handleSubmit */}
+        {/* show validation errors */}
+        {errors.length > 0 && (
+          <ul className="mb-4 list-disc pl-5 text-sm text-red-500">
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+        )}
+
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          {/* name */}
-         
+          {/* Username */}
           <div>
-            <div className="mb-2 block">
-              <Label htmlFor="name" className="text-gray-700 dark:text-gray-300">
-                Your name
-              </Label>
-            </div>
+            <Label htmlFor="name" className="mb-2 block text-gray-700 dark:text-gray-300">
+              Your name
+            </Label>
             <TextInput id="name" type="text" placeholder="John Smith" required />
           </div>
 
-          {/* email */}
+          {/* Email */}
           <div>
-            <div className="mb-2 block">
-              <Label htmlFor="email1" className="text-gray-700 dark:text-gray-300">
-                Email
-              </Label>
-            </div>
-            <TextInput
-              id="email1"
-              type="email"
-              placeholder="name@email.com"
-              required
-            />
+            <Label htmlFor="email1" className="mb-2 block text-gray-700 dark:text-gray-300">
+              Email
+            </Label>
+            <TextInput id="email1" type="email" placeholder="name@email.com" required />
           </div>
 
-          {/* password 1*/}
+          {/* Password */}
           <div>
-            <div className="mb-2 block">
-              <Label htmlFor="password1" className="text-gray-700 dark:text-gray-300">
-                Password
-              </Label>
-            </div>
+            <Label htmlFor="password1" className="mb-2 block text-gray-700 dark:text-gray-300">
+              Password
+            </Label>
             <PasswordInput id="password1" />
           </div>
 
-          {/* confirm password */}
+          {/* Confirm Password */}
           <div>
-            <div className="mb-2 block">
-              <Label htmlFor="password2" className="text-gray-700 dark:text-gray-300">
-                Confirm password
-              </Label>
-            </div>
+            <Label htmlFor="password2" className="mb-2 block text-gray-700 dark:text-gray-300">
+              Confirm password
+            </Label>
             <PasswordInput id="password2" />
           </div>
 

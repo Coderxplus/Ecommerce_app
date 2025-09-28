@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { ProductCard } from "./productcard";
 import { ProductContext } from "../context/ProductContext";
 import { CartProvider } from "../context/CartProvider";
+import { AuthContext } from "../context/AuthContext";
 
 export function MainSection() {
   return (
@@ -21,6 +22,10 @@ export function ProductGrid() {
   }
 
   const { products } = context;
+
+ 
+
+ 
 
   // Filter products dynamically
   const filteredProducts = products.filter((product) =>

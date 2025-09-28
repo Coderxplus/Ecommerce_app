@@ -1,40 +1,51 @@
-import { AuthContext, User } from "./AuthContext";
 import { useState, useEffect, ReactNode } from "react";
 import API from "../axios/axiosSetup";
-import { login as apiLogin, logout as apiLogout } from "../axios/auth";
+import { logout as apiLogout } from "../axios/auth";
+import { AuthContext, User } from "./AuthContext";
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-    const [user, setUser] = useState<User>(null);
+    const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const access = localStorage.getItem("access_token");
+
         if (access) {
-            API.get("/api/auth/me/")
-                .then((res) => setUser(res.data))
-                .catch(() => {
+            API.get("/auth/me/", {
+                headers: {
+                    Authorization: `Bearer ${access}`,
+                },
+            })
+                .then((res) => {
+                    console.log("✅ Authenticated user:", res.data);
+                    setUser(res.data);
+                })
+                .catch((err) => {
+                    console.error("❌ Auth check failed:", err.response?.data || err.message);
                     localStorage.removeItem("access_token");
                     localStorage.removeItem("refresh_token");
+                    setUser(null);
                 })
                 .finally(() => setLoading(false));
         } else {
+            console.log("ℹ️ No tokens found, skipping auth check");
             setLoading(false);
         }
     }, []);
 
-    const login = async (credentials: { username: string; password: string }) => {
-        await apiLogin(credentials);
-        const res = await API.get("/api/auth/me/");
-        setUser(res.data);
-    };
 
     const logout = async () => {
-        await apiLogout();
-        setUser(null);
+        try {
+            await apiLogout();
+        } finally {
+            localStorage.removeItem("access_token");
+            localStorage.removeItem("refresh_token");
+            setUser(null);
+        }
     };
 
     return (
-        <AuthContext.Provider value={{ user, loading, login, logout }}>
+        <AuthContext.Provider value={{ user, loading, logout }}>
             {children}
         </AuthContext.Provider>
     );
