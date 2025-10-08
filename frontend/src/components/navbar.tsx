@@ -56,9 +56,9 @@ export function NavigationBar(props) {
             }
           >
             <DropdownHeader>
-              <span className="block text-sm">Bonnie Green</span>
+              <span className="block text-sm">{props.user?.username || "Login"}</span>
               <span className="block truncate text-sm font-medium">
-                name@flowbite.com
+                {props.user?.email || "You are not signed in"}
               </span>
             </DropdownHeader>
             <Link to="/cart">

@@ -11,7 +11,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         const access = localStorage.getItem("access_token");
 
         if (access) {
-            API.get("/auth/me/", {
+            API.get("/auth/me", {
                 headers: {
                     Authorization: `Bearer ${access}`,
                 },

@@ -18,6 +18,8 @@ export const login = async (credentials: { username: string; password: string; r
     if (credentials.remember) {
       localStorage.setItem("access_token", access);
       localStorage.setItem("refresh_token", refresh);
+      sessionStorage.setItem("access_token", access);
+      sessionStorage.setItem("refresh_token", refresh);
     } else {
       sessionStorage.setItem("access_token", access);
       sessionStorage.setItem("refresh_token", refresh);

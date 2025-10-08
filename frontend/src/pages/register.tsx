@@ -5,6 +5,7 @@ import { Link,  useNavigate } from "react-router-dom";
 import { registerUser } from "../axios/auth";
 import { validateForm } from "../hooks/validateform";
 
+
 export function Register() {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
