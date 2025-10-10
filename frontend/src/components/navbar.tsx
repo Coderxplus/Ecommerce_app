@@ -11,10 +11,11 @@ import {
   TextInput,
   Button,
 } from "flowbite-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Logo from "../assets/Logo.png";
 import { SideMenu } from "./sidenav";
+import { logout } from "../axios/auth";
 
 export function NavigationBar(props) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -24,7 +25,12 @@ export function NavigationBar(props) {
     if (!searchQuery.trim()) return;
     console.log("Searching for:", searchQuery);
   };
+  const navigate = useNavigate();
 
+  const handleLogout = async () => {
+    await logout(); // clears tokens
+    navigate("/");  // redirect safely after
+  };
   return (
     <>
       <Navbar fluid rounded className="fixed top-0 left-0 w-full z-50 bg-gray-50 text-black shadow-lg px-4">
@@ -85,7 +91,7 @@ export function NavigationBar(props) {
             <DropdownItem>Settings</DropdownItem>
             <DropdownItem>Earnings</DropdownItem>
             <DropdownDivider />
-            <Link to="/login"><DropdownItem>Sign out</DropdownItem></Link>
+            <DropdownItem onClick={handleLogout}>Sign out</DropdownItem>
           </Dropdown>
 
           <NavbarToggle />

@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 from .serializers import RegisterSerializer, UserSerializer
 
 
@@ -42,4 +42,19 @@ def me(request):
     return Response(serializer.data)
 
 
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def logout(request):
+    try:
+        refresh_token = request.data.get("refresh")
+        if not refresh_token:
+            return Response({"detail": "Refresh token required"}, status=status.HTTP_400_BAD_REQUEST)
+
+        token = RefreshToken(refresh_token)
+        token.blacklist()  # ✅ Invalidate token
+
+        return Response({"detail": "Logout successful"}, status=status.HTTP_205_RESET_CONTENT)
+
+    except TokenError:
+        return Response({"detail": "Invalid or expired token"}, status=status.HTTP_400_BAD_REQUEST)
 # Create your views here.

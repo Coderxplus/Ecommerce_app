@@ -8,7 +8,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const access = localStorage.getItem("access_token");
+        const access = localStorage.getItem("access_token") || sessionStorage.getItem("access_token");
 
         if (access) {
             API.get("/auth/me", {
@@ -24,6 +24,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                     console.error("❌ Auth check failed:", err.response?.data || err.message);
                     localStorage.removeItem("access_token");
                     localStorage.removeItem("refresh_token");
+                    sessionStorage.removeItem("access_token");
+                    sessionStorage.removeItem("refresh_token");
                     setUser(null);
                 })
                 .finally(() => setLoading(false));
@@ -43,6 +45,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             setUser(null);
         }
     };
+
 
     return (
         <AuthContext.Provider value={{ user, loading, logout }}>
