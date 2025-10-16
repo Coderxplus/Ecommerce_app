@@ -6,7 +6,7 @@ import { AuthContext } from "../context/AuthContext";
 
 export function MainSection() {
   return (
-    <main className="flex-1 bg-gray-50 p-6">
+    <main className="flex-1 bg-gray-50 p-6 text-gray-900 dark:text-gray-100">
       {/* Product Grid */}
       <ProductGrid />
     </main>
@@ -23,9 +23,7 @@ export function ProductGrid() {
 
   const { products } = context;
 
- 
 
- 
 
   // Filter products dynamically
   const filteredProducts = products.filter((product) =>
@@ -46,7 +44,7 @@ export function ProductGrid() {
           </CartProvider>
         ))
       ) : (
-        <p className="col-span-full text-center text-gray-500">
+        <p className="col-span-full text-center text-gray-900">
           No products found.
         </p>
       )}

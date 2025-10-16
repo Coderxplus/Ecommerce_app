@@ -4,6 +4,7 @@ import { FooterSection } from "../components/footer";
 import { ProductProvider } from "../context/ProductProvider";
 import { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
+import { DarkThemeToggle } from "flowbite-react";
 
 export function Home () {
     const user = useContext(AuthContext)
@@ -11,6 +12,7 @@ export function Home () {
     
     return (
        <>
+       
         <div className="fixed top-0 left-0 w-full z-50">
             <NavigationBar user={user.user}/>
         </div>

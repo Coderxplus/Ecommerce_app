@@ -57,5 +57,6 @@ export const logout = async () => {
   } finally {
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
+    
   }
 };

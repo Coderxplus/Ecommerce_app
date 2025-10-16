@@ -28,12 +28,13 @@ export function NavigationBar(props) {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    await logout(); // clears tokens
-    navigate("/");  // redirect safely after
+    await logout(); 
+    navigate("/");  
+    window.location.reload(); 
   };
   return (
     <>
-      <Navbar fluid rounded className="fixed top-0 left-0 w-full z-50 bg-gray-50 text-black shadow-lg px-4">
+      <Navbar fluid  className="fixed top-0 left-0 w-full z-50 bg-gray-50 text-black shadow-lg px-4">
         <div className="flex items-center space-x-2">
           {/* Side Menu */}
           <SideMenu />
@@ -41,7 +42,7 @@ export function NavigationBar(props) {
           {/* Brand Logo */}
           <NavbarBrand href="/home" className="flex items-center space-x-2 ml-4">
             <img src={Logo} className="h-6 sm:h-9" alt="Ecommerce Logo" />
-            <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+            <span className="self-center whitespace-nowrap text-xl font-semibold tracking-tight text-gray-900">
               ShopX
             </span>
           </NavbarBrand>

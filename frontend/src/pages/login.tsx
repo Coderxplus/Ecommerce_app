@@ -39,22 +39,20 @@ export function LoginPage() {
         const response = await login(data);
         console.log("Login success:", response);
         navigate("/")
+        window.location.reload();
       } catch (err) {
         console.error("Login failed:", err);
         setErrors(["Invalid username or password."]);
       }
     };
 
-    // validate login form
-    
-
   return (
     <>
       <ThemeInit />
-      <div className="flex h-screen items-center justify-center bg-gray-100 dark:bg-gray-900">
-        <div className="login-form w-[400px] max-w-lg rounded-lg bg-white p-8 shadow-md dark:bg-gray-800">
+      <div className="flex h-screen items-center justify-center bg-gray-100">
+        <div className="login-form w-[400px] max-w-lg rounded-lg bg-white p-8 shadow-md">
           <div className="mb-4 text-center">
-            <h2 className="text-2xl font-bold text-gray-700 dark:text-gray-300">
+            <h2 className="text-2xl font-bold text-gray-700">
               Login
             </h2>
           </div>
@@ -72,7 +70,7 @@ export function LoginPage() {
               <div className="mb-2 block">
                 <Label
                   htmlFor="username"
-                  className="text-gray-700 dark:text-gray-300"
+                  className="text-gray-700"
                 >
                   Your username
                 </Label>
@@ -89,7 +87,7 @@ export function LoginPage() {
               <div className="mb-2 block">
                 <Label
                   htmlFor="password"
-                  className="text-gray-700 dark:text-gray-300"
+                  className="text-gray-700"
                 >
                   Your password
                 </Label>
@@ -104,7 +102,7 @@ export function LoginPage() {
               <Checkbox id="remember" />
               <Label
                 htmlFor="remember"
-                className="text-gray-700 dark:text-gray-300"
+                className="text-gray-700"
               >
                 Remember me
               </Label>
@@ -116,7 +114,7 @@ export function LoginPage() {
           <div className="mt-4 text-center">
             <Link
               to="/register"
-              className="text-blue-600 hover:underline dark:text-blue-400"
+              className="text-blue-600 hover:underline"
             >
               Don't have an account? Register
             </Link>

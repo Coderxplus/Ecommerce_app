@@ -59,10 +59,10 @@ export function Register() {
 
   
   return (
-    <div className="flex h-screen items-center justify-center bg-gray-100 dark:bg-gray-900">
-      <div className="login-form w-[400px] max-w-lg rounded-lg bg-white p-8 shadow-md dark:bg-gray-800">
+    <div className="flex h-screen items-center justify-center bg-gray-100">
+      <div className="login-form w-[400px] max-w-lg rounded-lg bg-white p-8 shadow-md">
         <div className="mb-4 text-center">
-          <h2 className="text-2xl font-bold text-gray-700 dark:text-gray-300">
+          <h2 className="text-2xl font-bold text-gray-700">
             Registration
           </h2>
         </div>
@@ -77,9 +77,9 @@ export function Register() {
         )}
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          {/* Username */}
+            {/* Username */}
           <div>
-            <Label htmlFor="name" className="mb-2 block text-gray-700 dark:text-gray-300">
+            <Label htmlFor="name" className="mb-2 block text-gray-700">
               Your name
             </Label>
             <TextInput id="name" type="text" placeholder="John Smith" required />
@@ -87,7 +87,7 @@ export function Register() {
 
           {/* Email */}
           <div>
-            <Label htmlFor="email1" className="mb-2 block text-gray-700 dark:text-gray-300">
+            <Label htmlFor="email1" className="mb-2 block text-gray-700">
               Email
             </Label>
             <TextInput id="email1" type="email" placeholder="name@email.com" required />
@@ -95,7 +95,7 @@ export function Register() {
 
           {/* Password */}
           <div>
-            <Label htmlFor="password1" className="mb-2 block text-gray-700 dark:text-gray-300">
+            <Label htmlFor="password1" className="mb-2 block text-gray-700">
               Password
             </Label>
             <PasswordInput id="password1" />
@@ -103,7 +103,7 @@ export function Register() {
 
           {/* Confirm Password */}
           <div>
-            <Label htmlFor="password2" className="mb-2 block text-gray-700 dark:text-gray-300">
+            <Label htmlFor="password2" className="mb-2 block text-gray-700">
               Confirm password
             </Label>
             <PasswordInput id="password2" />
@@ -115,7 +115,7 @@ export function Register() {
         <div className="mt-4 text-center">
           <Link
             to="/login"
-            className="text-blue-600 hover:underline dark:text-blue-400"
+            className="text-blue-600 hover:underline"
           >
             Already have an account? Login
           </Link>
