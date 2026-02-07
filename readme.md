@@ -1,6 +1,6 @@
-# Hobby Ecommerce App
+# Ecommerce App
 
-A simple ecommerce application for hobby projects. This app allows users to browse products, add them to a cart, and place orders.
+A simple ecommerce application it is a hobby projects. This app allows users to browse products, add them to a cart, and place orders.
 
 ## Features
 
